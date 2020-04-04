@@ -16,7 +16,26 @@ explore: order_items {
 
 view: order_items {
   sql_table_name: public.order_items ;; 
-   
+  
+  parameter: stack_by { 
+    type: unquoted
+    allowed_value: {
+  label: "Category"
+  value: "Category"
+  }
+ allowed_value: {
+  label: "Brand"
+  value: "Brand"
+  }
+ allowed_value: {
+  label: "Department"
+  value: "Department"
+  }
+ allowed_value: {
+  label: "State"
+  value: "State"
+  } 
+  } 
    
   
   dimension: id { 
@@ -25,12 +44,6 @@ view: order_items {
   
   dimension: new_dimension { 
     type: string
-    html: {% if order_items.stack_by._parameter_value == 'Brand' %} {{ products.brand._value }}
-                    {% elsif order_items.stack_by._parameter_value == 'Category' %}  {{ products.category._value }}
-                    {% elsif order_items.stack_by._parameter_value == 'Department' %} {{ products.department._value }}
-                    {% elsif order_items.stack_by._parameter_value == 'State' %} {{ users.state._value }}
-                    {% else %} 'N/A'
-                    {% endif %} ;;
     sql: {% if order_items.stack_by._parameter_value == 'Brand' %} products.brand
                     {% elsif order_items.stack_by._parameter_value == 'Category' %}  products.category
                     {% elsif order_items.stack_by._parameter_value == 'Department' %} products.department
