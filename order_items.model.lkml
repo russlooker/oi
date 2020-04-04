@@ -58,7 +58,7 @@ view: order_items {
    
   
   dimension: id { 
-   
+    primary_key: yes 
   }
   
   dimension: inventory_item_id { 
