@@ -74,10 +74,10 @@ view: agg {
   explore_source: order_items {
   
 column: new_dimension {
-  
+  field: order_items.new_dimension
   }
 column: total_sale_price {
-  
+  field: order_items.total_sale_price
   }
   
 derived_column: rank {
