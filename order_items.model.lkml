@@ -120,6 +120,10 @@ derived_column: rank {
     sql: ${TABLE}.new_dimension ;; 
   }
   
+  dimension: rank { 
+   
+  }
+  
   dimension: total_sale_price { 
     value_format: "$#,##0.00"
     type: number 
