@@ -89,8 +89,8 @@ derived_column: rank {
    
    
   
-  dimension: rnk { 
-    sql: ${TABLE}.rnk ;; 
+  dimension: new_dimension { 
+    sql: ${TABLE}.new_dimension ;; 
   }
   
   dimension: total_sale_price { 
