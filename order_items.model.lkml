@@ -75,7 +75,7 @@ view: order_items {
                     {% endif %} ;; 
   }
   
-  dimension: price { 
+  dimension: sale_price { 
    
   }
   
