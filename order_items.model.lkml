@@ -140,7 +140,7 @@ derived_column: rank {
   dimension: stacked_rank { 
     type: string
     sql: CASE
-                            WHEN ${rank} <= 10 then '0' || ${rank} || ') '|| ${new_dimension}
+                            WHEN ${rank} < 10 then '0' || ${rank} || ') '|| ${new_dimension}
                             ELSE ${rank} || ')' || ${new_dimension}
                             END ;; 
   }
