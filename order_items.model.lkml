@@ -110,11 +110,21 @@ column: total_sale_price {
 derived_column: rank {
   sql: ROW_NUMBER() OVER (ORDER BY total_sale_price DESC) ;;
   }
-  bind_all_filters: yes
+  bind_filters: {
+  from_field: order_items.stack_by
+  to_field: order_items.stack_by
+  }
+  bind_filters: {
+  from_field: order_items.created_date
+  to_field: order_items.created_date
+  }
   }
   } 
    
-   
+  
+  filter: tail_threshold { 
+    type: number 
+  } 
   
   dimension: new_dimension { 
     sql: ${TABLE}.new_dimension ;; 
@@ -122,6 +132,21 @@ derived_column: rank {
   
   dimension: rank { 
     type: number 
+  }
+  
+  dimension: ranked_brand_with_tail { 
+    type: string
+    sql: CASE WHEN {% condition tail_threshold %} ${rank} {% endcondition %} THEN ${stacked_rank}
+                        ELSE 'x) Other'
+                        END ;; 
+  }
+  
+  dimension: stacked_rank { 
+    type: string
+    sql: CASE
+                            WHEN ${rank} <= 10 then '0' || ${rank} || ') '|| ${new_dimension}
+                            ELSE ${rank} || ')' || ${new_dimension}
+                            END ;; 
   }
   
   dimension: total_sale_price { 
