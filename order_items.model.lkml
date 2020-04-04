@@ -5,14 +5,9 @@ include: "views/*.lkml"
 explore: order_items {
 
 
-
-
-
-
   join: inventory_items {
-    type: left_outer
-    relationship: one_to_many
-    sql_on: ${order_items.inventory_item_id} = ${inventory_items.id} ;;
+    sql_on: ${inventory_items.product_id} = ${products.id} ;;
+    relationship: many_to_one
   }
   join: products {
     type: left_outer
@@ -54,11 +49,18 @@ view: order_items {
   label: "State"
   value: "State"
   }
+
   }
 
 
   dimension: id {
 
+  }
+
+
+
+  dimension: inventory_item_id {
+    sql: ${TABLE}.inventory_item_id ;;
   }
 
   dimension: new_dimension {
@@ -71,14 +73,11 @@ view: order_items {
                     {% endif %} ;;
   }
 
+
   dimension: price {
 
   }
   dimension: user_id {}
-  dimension: inventory_item_id {
-    sql: ${TABLE}.inventory_item_id ;;
-  }
-
   dimension: state {
 
   }
