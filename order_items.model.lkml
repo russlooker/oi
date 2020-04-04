@@ -90,7 +90,7 @@ view: order_items {
   
   measure: total_sale_price { 
     type: sum
-    sql: ${price} ;; 
+    sql: ${sale_price} ;; 
   } 
   
 }
