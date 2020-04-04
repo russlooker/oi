@@ -9,7 +9,7 @@ explore: order_items {
   
   join: products { 
     type: left_outer
-    sql_on: ${order_items.product_id} = ${products.id} ;;
+    sql_on: ${order_items.sku} = ${products.sku} ;;
     relationship: many_to_one 
   }
   
@@ -63,8 +63,8 @@ view: order_items {
    
   }
   
-  dimension: product_id { 
-   
+  dimension: sku { 
+    sql: ${TABLE}.SKU ;; 
   }
   
   dimension: state { 
