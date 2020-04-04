@@ -119,7 +119,8 @@ derived_column: rank {
    
   
   filter: tail_threshold { 
-    type: number 
+    type: number
+    hidden: yes 
   } 
   
   dimension: new_dimension { 
@@ -127,7 +128,8 @@ derived_column: rank {
   }
   
   dimension: rank { 
-    type: number 
+    type: number
+    hidden: yes 
   }
   
   dimension: ranked_brand_with_tail { 
@@ -141,7 +143,7 @@ derived_column: rank {
     type: string
     sql: CASE
                             WHEN ${rank} < 10 then '0' || ${rank} || ') '|| ${new_dimension}
-                            ELSE ${rank} || ')' || ${new_dimension}
+                            ELSE ${rank} || ') ' || ${new_dimension}
                             END ;; 
   }
   
