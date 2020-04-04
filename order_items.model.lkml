@@ -1,10 +1,17 @@
 connection: "snowlooker"
+include: "views/*.lkml"
 
 
 explore: order_items {
 
   
 
+  
+  join: products { 
+    type: left_outer
+    sql_on: ${order_items.product_id} = ${products.id} ;;
+    relationship: many_to_one 
+  }
   
   join: agg { 
     type: left_outer
@@ -53,6 +60,10 @@ view: order_items {
   }
   
   dimension: price { 
+   
+  }
+  
+  dimension: product_id { 
    
   }
   
