@@ -114,10 +114,6 @@ derived_column: rank {
   from_field: order_items.stack_by
   to_field: order_items.stack_by
   }
-  bind_filters: {
-  from_field: order_items.created_date
-  to_field: order_items.created_date
-  }
   }
   } 
    
