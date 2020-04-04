@@ -121,7 +121,7 @@ derived_column: rank {
   }
   
   dimension: rank { 
-   
+    type: number 
   }
   
   dimension: total_sale_price { 
