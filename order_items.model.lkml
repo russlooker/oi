@@ -7,9 +7,15 @@ explore: order_items {
   
 
   
+  join: inventory_items { 
+    type: left_outer
+    relationship: one_to_many
+    sql_on: ${order_items.inventory_item_id} = ${inventory_items.id} ;; 
+  }
+  
   join: products { 
     type: left_outer
-    sql_on: ${order_items.sku} = ${products.sku} ;;
+    sql_on: ${inventory_items.product_id} = ${products.id} ;;
     relationship: many_to_one 
   }
   
@@ -49,6 +55,10 @@ view: order_items {
    
   }
   
+  dimension: inventory_item_id { 
+    sql: ${TABLE}.inventory_item_id ;; 
+  }
+  
   dimension: new_dimension { 
     type: string
     sql: {% if order_items.stack_by._parameter_value == 'Brand' %} ${products.brand}
@@ -61,10 +71,6 @@ view: order_items {
   
   dimension: price { 
    
-  }
-  
-  dimension: sku { 
-    sql: ${TABLE}.SKU ;; 
   }
   
   dimension: state { 
