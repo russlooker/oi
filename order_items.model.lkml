@@ -5,22 +5,31 @@ include: "*.view.lkml"
 
 explore: order_items {
 
-  join: inventory_items {
+  
+
+  
+  join: inventory_items { 
     type: left_outer
     relationship: one_to_many
-    sql_on: ${order_items.inventory_item_id} = ${inventory_items.id} ;;
+    sql_on: ${order_items.inventory_item_id} = ${inventory_items.id} ;; 
   }
-
-  join: products {
+  
+  join: products { 
     type: left_outer
     sql_on: ${inventory_items.product_id} = ${products.id} ;;
-    relationship: many_to_one
+    relationship: many_to_one 
   }
-
-  join: users {
+  
+  join: users { 
     type: left_outer
     sql_on: ${order_items.user_id} = ${users.id} ;;
-    relationship: many_to_one
+    relationship: many_to_one 
   }
-
+  
+  join: rank_ndt { 
+    type: left_outer
+    relationship: many_to_one
+    sql_on: ${order_items.dynamic_dim}  = ${rank_ndt.dynamic_dim} ;; 
+  }
 }
+
