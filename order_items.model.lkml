@@ -104,10 +104,10 @@ view: order_items {
   dimension: new_dimension2 { 
     type: string
     hidden: yes
-    sql: {% if order_items.stack_by._parameter_value == 'Brand' %} ${products.brand}
-                    {% elsif order_items.stack_by._parameter_value == 'Category' %}  ${products.category}
-                    {% elsif order_items.stack_by._parameter_value == 'Department' %} ${products.department}
-                    {% elsif order_items.stack_by._parameter_value == 'State' %} ${users.state}
+    sql: {% if order_items.stack_by._parameter_value == 'Brand' %} products.brand
+                    {% elsif order_items.stack_by._parameter_value == 'Category' %}  products.category
+                    {% elsif order_items.stack_by._parameter_value == 'Department' %} products.department
+                    {% elsif order_items.stack_by._parameter_value == 'State' %} users.state
                     {% else %} 'N/A'
                     {% endif %} ;; 
   }
